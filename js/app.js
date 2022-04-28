@@ -4,8 +4,6 @@
 buyTickets()
 
 
-
-
 function buyTickets()  {
     let confirmSelection = confirm("Comprar entradas")
     selectEvent(confirmSelection)
@@ -95,12 +93,12 @@ function selectFnc() {
         numero = (Number(prompt("Seleccione su función")));
        
         if(numero == 1) {
-            console.log(`Opción Seleccionada: ${numero}`)       
-            selectPayMethod()
+            console.log(`Opción Seleccionada: ${numero}`)                   
+            seatSelectorQty()
         }
         else if (numero == 2) {
             console.log(`Opción Seleccionada: ${numero}`)    
-            selectPayMethod()
+            seatSelectorQty()
         }
         else if (numero == 3) {
             console.clear()
@@ -121,8 +119,41 @@ function selectFnc() {
     
 }
 
+function seatSelectorQty(){
+    console.warn("-------------------------------")         
+    console.warn("Seleccione la cantidad de tickets")
+    console.warn("-------------------------------")
+    console.warn("*Maximo de entradas permitidas por operacion 8*")
+    console.log("Precio:$200 por unidad, cargo de servicio por entrada 10% (del valor)")
 
-function selectPayMethod() {
+    op = prompt("Seleccione la cantidad")
+
+    if((op > 8) || (op < 1)) {       
+            console.clear()
+            console.warn("-------------------------------")         
+            console.error("Seleccion incorrecta, seleccione nuevamente")
+            console.warn("-------------------------------")
+            seatSelectorQty()            
+    } 
+    selectPayMethod(op)    
+}
+
+
+function selectPayMethod(quantity) {
+    
+
+    let cashWallet = 2000
+    let creditWallet = 3000
+    let debitWallet = 1500
+
+    let ticketValue = 200
+    let ticketServiceCh = parseInt(ticketValue * 1.10) //10%
+    let qtyTicket = ticketValue*quantity
+    let ticketTotal = qtyTicket + ticketServiceCh
+
+    alert(`Valor total de su compra: $${ticketTotal}, Valor de tickets: $${qtyTicket}, valor Service Charge $${ticketServiceCh}`)
+
+
     console.warn("-------------------------------")         
     console.warn("Como desea abonar su compra?")
     console.warn("-------------------------------")
@@ -135,15 +166,39 @@ function selectPayMethod() {
     switch(op) {
         case "1":
             console.log(`Usted está abonando con la opcion:${op}, Efectivo`)
-            payAccepted()
+
+            if (ticketTotal > cashWallet) {
+                payStatus(2)            
+            }
+            else {
+                cashWallet -= ticketTotal
+                console.warn(`Su saldo actual en efectivo es:$${cashWallet}`)
+                payStatus(1)
+            }
+                
             break;
         case "2":
             console.log(`Usted está abonando con la opcion:${op}, Tarjeta de Crédito`)
-            payAccepted()
+            if (ticketTotal > creditWallet) {
+                payStatus(2)            
+            }
+            else {
+                creditWallet -= ticketTotal
+                console.warn(`Su saldo actual en tarjeta de crédito es:$${creditWallet}`)
+                payStatus(1)
+            }
+                
             break;
         case "3":
             console.log(`Usted está abonando con la opcion:${op}, Tarjeta de Débito`)
-            payAccepted()
+            if (ticketTotal > debitWallet) {
+                payStatus(2)            
+            }
+            else {
+                debitWallet -= ticketTotal
+                console.warn(`Su saldo actual en tarjeta de débito es:$${debitWallet}`)
+                payStatus(1)
+            }
             break;
 
         default:
@@ -157,8 +212,16 @@ function selectPayMethod() {
 
 }
 
-function payAccepted() {
-    console.warn("-------------------------------")  
-    console.warn("Su pago fue aceptado, Gracias por su compra!")
-    console.warn("-------------------------------")  
+function payStatus(status) {
+
+    if (status == 1) {
+        console.warn("-------------------------------")  
+        console.warn("Su pago fue aceptado, Gracias por su compra!")
+        console.warn("-------------------------------")  
+    }
+    else {
+        console.error("-------------------------------")  
+        console.error("Su pago fue rechazado. Fondos insuficientes.")
+        console.error("-------------------------------")  
+    }
 }
