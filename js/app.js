@@ -4,21 +4,32 @@
 buyTickets()
 
 
+
+
 function buyTickets()  {
     let confirmSelection = confirm("Comprar entradas")
     selectEvent(confirmSelection)
 }
 
 function selectEvent(c) {
+    
+//Array de objetos
+const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium"},
+        { id: 2, bandName: "QUEEN", place: "Wembley Stadium"},
+        { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena"},
+        { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion"}]
+
     if (c) {
         console.warn("-------------------------------")
         console.warn("Por favor seleccione un evento")
         console.warn("-------------------------------")
-        console.log("1: INXS - Wembley Stadium")
-        console.log("2: QUEEN - Wembley Stadium")
-        console.log("3: DIRE STRAITS - Arco Arena")
-        console.log("4: GUNS N' Roses - Waldstadion")
-        console.log("5: Finalizar Operación")
+        
+        //Recorrido del Array e impresión
+        for (const event of listEvents) {            
+            console.log(`Opcion: ${event.id} ${event.bandName} - ${event.place}`);
+        }
+        
+        console.log("Opción: 5 Finalizar Operación")
         let selectEve =prompt("Seleccione el evento")
 
         switch(selectEve) {
