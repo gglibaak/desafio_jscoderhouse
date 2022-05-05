@@ -1,5 +1,15 @@
 //alert()
 
+//Array de objetos
+const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 16:00Hs",},
+                    { id: 2, bandName: "QUEEN", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 13:00Hs" },
+                    { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena", dayHour: "Martes 30 Junio 19:00Hs"},
+                    { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion", dayHour: "Viernes 25 De Junio 17:00Hs"}]
+
+let cashWallet = 2000
+let creditWallet = 3000
+let debitWallet = 1500
+let ticketValue = 200
 
 buyTickets()
 
@@ -9,25 +19,67 @@ function buyTickets()  {
     selectEvent(confirmSelection)
 }
 
+function advertMessages(p) {
+
+    advert = document.getElementById("topMsg")
+
+    switch(p) {
+        case 1:
+    
+            advert.innerHTML = (`<p style="color: blue; font-weight: bold;">-----Por favor seleccione un evento-----</p>`)
+                                
+            document.body.appendChild(advert)
+            break;
+       
+        case 2:
+            
+            advert.innerHTML = (`<p style="color: red; font-weight: bold;">-----Selección Incorrecta-----</p>`)
+                                
+            document.body.appendChild(advert)
+            break;
+
+        case 3:
+            advert.innerHTML = (`<p style="color: red; font-weight: bold">-----Operación Cancelada-----</p>`)
+                                
+            document.body.appendChild(advert)
+            break;
+        default:
+            
+            advert.innerHTML = (`<p style="color: red; font-weight: bold">-----ERROR-----</p>`)
+                                
+            document.body.appendChild(advert)
+            break;
+        }
+}
+
 function selectEvent(c) {
     
-//Array de objetos
-const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium"},
-        { id: 2, bandName: "QUEEN", place: "Wembley Stadium"},
-        { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena"},
-        { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion"}]
 
     if (c) {
-        console.warn("-------------------------------")
-        console.warn("Por favor seleccione un evento")
-        console.warn("-------------------------------")
-        
+          
+        //Mensaje
+        advertMessages(1)
+                
         //Recorrido del Array e impresión
         for (const event of listEvents) {            
-            console.log(`Opcion: ${event.id} ${event.bandName} - ${event.place}`);
+                      
+           let list = document.createElement("div")
+
+           list.className = "listEvent"
+           
+
+            list.innerHTML = `
+                              <p>  Opción ${event.id} </p>                              
+                              <ul> 
+                               <li> ${event.bandName} </li>
+                               <li> ${event.dayHour} </li>
+                               <li> ${event.place} </li>
+                              </ul>                              
+                             `
+            document.body.appendChild(list)
         }
         
-        console.log("Opción: 5 Finalizar Operación")
+        console.log("Presione 5 para Finalizar Operación")
         let selectEve =prompt("Seleccione el evento")
 
         switch(selectEve) {
@@ -58,20 +110,22 @@ const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium"},
                 console.warn("-------------------------------")
                 break;
             default:
-                console.log("Selección Incorrecta")
-                selectEvent(c)
+                advertMessages(2)                
+               // selectEvent(c)
+                
                 break;      
         }
 
     }
     else {
+        
         console.log("Selección Invalida, por favor seleccione nuevamente")
         let dontGo = confirm("Aún quieres comprar entradas?")
         
         if (dontGo) 
             buyTickets()        
         else 
-            console.warn("Operación Cancelada")
+        advertMessages(3)
         
     }    
 }
@@ -142,11 +196,8 @@ function seatSelectorQty(){
 function selectPayMethod(quantity) {
     
 
-    let cashWallet = 2000
-    let creditWallet = 3000
-    let debitWallet = 1500
+   
 
-    let ticketValue = 200
     let ticketServiceCh = parseInt(ticketValue * 1.10) //10%
     let qtyTicket = ticketValue*quantity
     let ticketTotal = qtyTicket + ticketServiceCh
@@ -206,7 +257,7 @@ function selectPayMethod(quantity) {
             console.warn("-------------------------------")   
             console.warn("Por favor seleccione una opción correcta.")
             console.warn("-------------------------------")
-            selectPayMethod()   
+            seatSelectorQty()   
             break;
     }
 
