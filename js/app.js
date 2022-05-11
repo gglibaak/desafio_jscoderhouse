@@ -11,6 +11,9 @@ let creditWallet = 3000
 let debitWallet = 1500
 let ticketValue = 200
 
+
+let selectEve 
+
 buyTickets()
 
 
@@ -58,7 +61,7 @@ function selectEvent(c) {
     if (c) {
           
         //Mensaje
-        advertMessages(1)
+        //advertMessages(1)
                 
         //Recorrido del Array e impresión
         for (const event of listEvents) {            
@@ -80,41 +83,53 @@ function selectEvent(c) {
         }
         
         console.log("Presione 5 para Finalizar Operación")
-        let selectEve =prompt("Seleccione el evento")
+       // let selectEve =prompt("Seleccione el evento")
 
-        switch(selectEve) {
-            case "1":
-                console.log("-------------------------------") 
-                console.log("Evento Seleccionado: INXS - Wembley Stadium")
-                console.log("-------------------------------")
-                selectFnc()
-                break;
-            case "2":
-                console.log("-------------------------------") 
-                console.log("Evento Seleccionado: QUEEN - Wembley Stadium")
-                selectFnc()
-                break;
-            case "3": 
-                console.log("-------------------------------")
-                console.log("Evento Seleccionado: DIRE STRAITS - Arco Arena")
-                selectFnc()
-                break;
-            case "4": 
-                console.log("-------------------------------")
-                console.log("Evento Seleccionado: GUNS N' Roses - Waldstadion")
-                selectFnc()
-                break;
-            case "5": 
-                console.warn("-------------------------------")
-                console.warn("Operación Finalizada")
-                console.warn("-------------------------------")
-                break;
-            default:
-                advertMessages(2)                
-               // selectEvent(c)
-                
-                break;      
-        }
+       const selectedOpt = document.querySelector('#formOption')
+
+       selectedOpt.addEventListener('submit', (e)=> {
+           e.preventDefault()
+           
+           const optionValue = document.querySelector('#option').value
+           //console.log(optionValue)
+
+           selectEve = optionValue       
+              
+
+            switch(selectEve) {
+                case "1":
+                    console.log("-------------------------------") 
+                    console.log("Evento Seleccionado: INXS - Wembley Stadium")
+                    console.log("-------------------------------")
+                    selectFnc()
+                    break;
+                case "2":
+                    console.log("-------------------------------") 
+                    console.log("Evento Seleccionado: QUEEN - Wembley Stadium")
+                    selectFnc()
+                    break;
+                case "3": 
+                    console.log("-------------------------------")
+                    console.log("Evento Seleccionado: DIRE STRAITS - Arco Arena")
+                    selectFnc()
+                    break;
+                case "4": 
+                    console.log("-------------------------------")
+                    console.log("Evento Seleccionado: GUNS N' Roses - Waldstadion")
+                    selectFnc()
+                    break;
+                case "5": 
+                    console.warn("-------------------------------")
+                    console.warn("Operación Finalizada")
+                    console.warn("-------------------------------")
+                    break;
+                default:
+                    advertMessages(2)                
+                // selectEvent(c)
+                    
+                    break;      
+            }
+        })
 
     }
     else {
@@ -128,6 +143,7 @@ function selectEvent(c) {
         advertMessages(3)
         
     }    
+    
 }
 
 function selectFnc() {
