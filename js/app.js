@@ -6,6 +6,12 @@ const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium", dayHour
                     { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena", dayHour: "Martes 30 Junio 19:00Hs"},
                     { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion", dayHour: "Viernes 25 De Junio 17:00Hs"}]
 
+const listJson = JSON.stringify(listEvents)
+
+localStorage.setItem("eventList", listJson)
+
+
+
 let cashWallet = 2000
 let creditWallet = 3000
 let debitWallet = 1500
@@ -57,14 +63,18 @@ function advertMessages(p) {
 
 function selectEvent(c) {
     
+    
 
     if (c) {
           
         //Mensaje
         //advertMessages(1)
                 
-        //Recorrido del Array e impresión
-        for (const event of listEvents) {            
+        
+        const parseList = JSON.parse(localStorage.getItem("eventList"))
+        
+        //Recorrido del Array e impresión       
+        for (const event of parseList) {            
                       
            let list = document.createElement("div")
 
