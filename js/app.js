@@ -6,6 +6,7 @@ const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium", dayHour
                     { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena", dayHour: "Martes 30 Junio 19:00Hs"},
                     { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion", dayHour: "Viernes 25 De Junio 17:00Hs"}]
 
+const listFunc = [ "1 - Miercoles 21 Septiembre 18:00Hs","2 - Viernes 23 Septiembre 18:00Hs" ]
 const listJson = JSON.stringify(listEvents)
 
 localStorage.setItem("eventList", listJson)
@@ -158,12 +159,18 @@ function selectEvent(c) {
 
 function selectFnc() {
 
+    //Spread
+    const spreadList = [...listFunc]
+
+    //Destructuring 
+    const [a, b] = spreadList
+
     console.warn("-------------------------------") 
     console.warn("Seleccione la función") 
     console.warn("-------------------------------") 
-    console.log("1: Miercoles 21 Septiembre 18:00Hs")
+    console.log(a)
     console.log("-------------------------------") 
-    console.log("2: Viernes 23 Septiembre 18:00Hs")
+    console.log(b)
     console.log("-------------------------------") 
     console.log("3: Finalizar Operación")
     console.log("-------------------------------") 
@@ -290,15 +297,6 @@ function selectPayMethod(quantity) {
 }
 
 function payStatus(status) {
-
-    if (status == 1) {
-        console.warn("-------------------------------")  
-        console.warn("Su pago fue aceptado, Gracias por su compra!")
-        console.warn("-------------------------------")  
-    }
-    else {
-        console.error("-------------------------------")  
-        console.error("Su pago fue rechazado. Fondos insuficientes.")
-        console.error("-------------------------------")  
-    }
+    //Operador Ternario
+    status == 1 ? console.warn("Su pago fue aceptado, Gracias por su compra!") : console.error("Su pago fue rechazado. Fondos insuficientes.")  
 }
