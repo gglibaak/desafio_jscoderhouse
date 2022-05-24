@@ -297,6 +297,8 @@ function selectPayMethod(quantity) {
 }
 
 function payStatus(status) {
-    //Operador Ternario
-    status == 1 ? console.warn("Su pago fue aceptado, Gracias por su compra!") : console.error("Su pago fue rechazado. Fondos insuficientes.")  
+    //Operador Ternario // Incorporando librerías externas
+    status == 1 ? swal({title: "Pago Aceptado!",text: "Gracias por su compra!",icon: "success",button: "Confirmar",}) : swal({title: "Pago Rechado",text: "Fondo Insuficientes",icon: "error",button: "Confirmar",}); 
+  
+      
 }
