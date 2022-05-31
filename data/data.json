@@ -1,0 +1,26 @@
+[
+    { 
+        "id": 1,
+        "bandName": "INXS",
+        "place": "Wembley Stadium",
+        "dayHour": "Sábado 13 Julio 16:00Hs"
+    },
+    {
+        "id": 2,
+        "bandName": "QUEEN",
+        "place": "Wembley Stadium",
+        "dayHour": "Sábado 13 Julio 13:00Hs"
+     },
+     {
+        "id": 3,
+        "bandName": "DIRE STRAITS",
+        "place": "Arco Arena",
+        "dayHour": "Martes 30 Junio 19:00Hs"
+    },
+    { 
+        "id": 4,
+        "bandName": "GUNS N' ROSES",
+        "place": "Waldstadion",
+        "dayHour": "Viernes 25 De Junio 17:00Hs"
+    }
+]

@@ -1,18 +1,43 @@
 //alert()
 
+
+
+
+
 //Array de objetos
-const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 16:00Hs",},
-                    { id: 2, bandName: "QUEEN", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 13:00Hs" },
-                    { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena", dayHour: "Martes 30 Junio 19:00Hs"},
-                    { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion", dayHour: "Viernes 25 De Junio 17:00Hs"}]
+// const listEvents = [{ id: 1, bandName: "INXS", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 16:00Hs",},
+//                     { id: 2, bandName: "QUEEN", place: "Wembley Stadium", dayHour: "Sábado 13 Julio 13:00Hs" },
+//                     { id: 3, bandName: "DIRE STRAITS", place: "Arco Arena", dayHour: "Martes 30 Junio 19:00Hs"},
+//                     { id: 4, bandName: "GUNS N' ROSES", place: "Waldstadion", dayHour: "Viernes 25 De Junio 17:00Hs"}]
+
+// const listFunc = [ "1 - Miercoles 21 Septiembre 18:00Hs","2 - Viernes 23 Septiembre 18:00Hs" ]
+// const listJson = JSON.stringify(listEvents)
+
+// localStorage.setItem("eventList", listJson)
+
+
+// Recuperamos info de data.json mediante fetch
+const getJSONdata = ()=> {
+    fetch("../data/data.json")
+        .then((res) => res.json())
+        .then((data)=> putJSONdata(data))
+        .catch((err)=> console.log("Flag: ",err))
+}
+
+// Recorremos el json obtenido y lo asignamos a listEvents para luego ser guardado en el localStorage
+const putJSONdata = (events) => {
+       const listEvents = []
+    events.forEach((a)=> {
+        
+        listEvents.push(a)
+    })
+             
+    const listJson = JSON.stringify(listEvents)
+    
+    localStorage.setItem("eventList", listJson)
+}
 
 const listFunc = [ "1 - Miercoles 21 Septiembre 18:00Hs","2 - Viernes 23 Septiembre 18:00Hs" ]
-const listJson = JSON.stringify(listEvents)
-
-localStorage.setItem("eventList", listJson)
-
-
-
 let cashWallet = 2000
 let creditWallet = 3000
 let debitWallet = 1500
@@ -20,13 +45,14 @@ let ticketValue = 200
 
 
 let selectEve 
-
+getJSONdata()
 buyTickets()
 
 
 function buyTickets()  {
     let confirmSelection = confirm("Comprar entradas")
     selectEvent(confirmSelection)
+    
 }
 
 function advertMessages(p) {
